@@ -30,6 +30,7 @@ unset($_GET['sort-order']);
     
     if (!empty($categories)) {
         echo '<nav id="categories">';
+        echo '<h3>Categories</h3>';
         echo '<ul>';
         
         foreach ($categories as $category) {
@@ -44,6 +45,7 @@ unset($_GET['sort-order']);
 
     if (!empty($categories)) {
         echo '<nav id="tags">';
+        echo '<h3>Tags</h3>';
         echo '<ul>';
     
         foreach ($tags as $tag) {
@@ -75,13 +77,15 @@ unset($_GET['sort-order']);
     if (empty($_GET)) {
         try {
             $posts = findAllPosts('created_at', $sortOrder);
-            
+            echo '<section>';
+            echo '<header><h2>My latest Posts</h2></header>';
             echo '<ul>';
             foreach ($posts as $post) {
                 $postPublishDate = strftime('%a %e. %B %Y', (new DateTime($post['created_at']))->getTimestamp());
                 echo '<li>[' . $postPublishDate . '] <a href="?post=' . $post['id'] . '">' . $post['title'] . '</a></li>';
             }
             echo '</ul>';
+            echo '</section>';
         } catch (Exception $exception) {
             echo 'Keine Beiträge gefunden. <a href="?action=new">Schreib</a> den ersten Beitrag.';
         }
