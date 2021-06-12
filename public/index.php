@@ -5,6 +5,10 @@ require_once __DIR__ . '/../inc/category.php';
 require_once __DIR__ . '/../inc/post.php';
 require_once __DIR__ . '/../inc/tag.php';
 
+$sortOrder = filter_input(INPUT_GET, 'sort-order', FILTER_SANITIZE_STRING);
+$sortOrder = strtoupper($sortOrder) ?? 'DESC';
+unset($_GET['sort-order']);
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -50,11 +54,23 @@ require_once __DIR__ . '/../inc/tag.php';
     ?>
 </aside>
 <main>
+    <aside>
+        <p>
+            <span class="label">Sort:</span>
+            <?php
+            if ($sortOrder === 'DESC') {
+                echo '<a href="index.php?sort-order=asc">ascending</a>';
+            } else {
+                echo '<a href="index.php?sort-order=desc">descending</a>';
+            }
+            ?>
+        </p>
+    </aside>
     <?php
     
     if (empty($_GET)) {
         try {
-            $posts = findAllPosts();
+            $posts = findAllPosts('created_at', $sortOrder);
             
             echo '<ul>';
             foreach ($posts as $post) {
@@ -88,7 +104,7 @@ require_once __DIR__ . '/../inc/tag.php';
         $categoryId = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
         
         try {
-            $posts = findPostsByCategorie($categoryId);
+            $posts = findPostsByCategorie($categoryId, 'created_at', $sortOrder);
     
             echo '<ul>';
             foreach ($posts as $post) {
@@ -105,7 +121,7 @@ require_once __DIR__ . '/../inc/tag.php';
         $tagId = filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_NUMBER_INT);
     
         try {
-            $posts = findPostsByTag($tagId);
+            $posts = findPostsByTag($tagId, 'created_at', $sortOrder);
         
             echo '<ul>';
             foreach ($posts as $post) {

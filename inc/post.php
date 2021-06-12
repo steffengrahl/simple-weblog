@@ -41,20 +41,22 @@ function findOnePost(int $id): array
     throw new Exception('Didn\'nt find any post with Id ' . $id);
 }
 
-function findPostsByCategorie(int $categoryId): array
+function findPostsByCategorie(int $categoryId, string $orderColumn = '', string $orderDirection = 'ASC'): array
 {
     $posts = findAllPosts();
+    $posts = sortByColumn($posts, $orderColumn, $orderDirection);
     
     return array_filter($posts, static function (array $post) use ($categoryId) {
         return $post['category'] === $categoryId;
     });
 }
 
-function findPostsByTag(int $tagId): array
+function findPostsByTag(int $tagId, string $orderColumn = '', string $orderDirection = 'ASC'): array
 {
     $posts = findAllPosts();
+    $posts = sortByColumn($posts, $orderColumn, $orderDirection);
     
     return array_filter($posts, static function (array $post) use ($tagId) {
-        return in_array($tagId, $post['tags']);
+        return in_array($tagId, $post['tags'], true);
     });
 }
