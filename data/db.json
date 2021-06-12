@@ -1,0 +1,86 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "my first blog post",
+      "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734",
+      "published_at": "2021-03-24 19:04:37.2734",
+      "category": 1,
+      "tags": [9,8,34]
+    },
+    {
+      "id": 2,
+      "title": "another blog post",
+      "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      "created_at": "2021-04-04 16:40:37.2734",
+      "updated_at": "2021-04-04 20:04:07.2734",
+      "published_at": "2021-04-04 16:40:37.2734",
+      "category": 2,
+      "tags": [3,4]
+    },
+    {
+      "id": 3,
+      "title": "welcome to my weblog",
+      "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      "created_at": "2021-04-18 17:33:29.9794",
+      "updated_at": "2021-04-18 17:33:29.9794",
+      "published_at": "2021-03-23 19:04:37.2734",
+      "category": 1,
+      "tags": [9,8,3]
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Misc",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    },
+    {
+      "id": 2,
+      "name": "Other",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    }
+  ],
+  "tags": [
+    {
+      "id": 3,
+      "name": "foo",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    },
+    {
+      "id": 4,
+      "name": "bar",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    },
+    {
+      "id": 8,
+      "name": "baz",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    },
+    {
+      "id": 9,
+      "name": "fizz",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    },
+    {
+      "id": 34,
+      "name": "buzz",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    },
+    {
+      "id": 52,
+      "name": "fizzbuzz",
+      "created_at": "2021-03-24 19:04:37.2734",
+      "updated_at": "2021-03-24 19:04:37.2734"
+    }
+  ]
+}
