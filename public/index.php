@@ -6,7 +6,8 @@ require_once __DIR__ . '/../inc/post.php';
 require_once __DIR__ . '/../inc/tag.php';
 
 $sortOrder = filter_input(INPUT_GET, 'sort-order', FILTER_SANITIZE_STRING);
-$sortOrder = strtoupper($sortOrder) ?? 'DESC';
+$sortOrder = $sortOrder ?? 'DESC';
+$sortOrder = strtoupper($sortOrder);
 unset($_GET['sort-order']);
 
 ?><!doctype html>
@@ -15,6 +16,7 @@ unset($_GET['sort-order']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>simple weblog</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header>
@@ -54,6 +56,7 @@ unset($_GET['sort-order']);
     ?>
 </aside>
 <main>
+    <?php if (empty($_GET)) : ?>
     <aside>
         <p>
             <span class="label">Sort:</span>
@@ -66,6 +69,7 @@ unset($_GET['sort-order']);
             ?>
         </p>
     </aside>
+    <?php endif; ?>
     <?php
     
     if (empty($_GET)) {
