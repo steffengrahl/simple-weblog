@@ -17,3 +17,26 @@ function findAllCategories(string $orderColumn = '', string $orderDirection = 'A
     
     return sortByColumn($db['categories'], $orderColumn, $orderDirection);
 }
+
+/**
+ * @param int $id
+ *
+ * @return array
+ * @throws Exception
+ */
+function findOneCategory(int $id): array
+{
+    $categories = findAllCategories();
+    
+    foreach ($categories as $category) {
+        if (!array_key_exists('id', $category)) {
+            continue;
+        }
+        
+        if ($category['id'] === $id) {
+            return $category;
+        }
+    }
+    
+    throw new Exception('Didn\'nt find any category with Id ' . $id);
+}

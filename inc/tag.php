@@ -17,3 +17,26 @@ function findAllTags(string $orderColumn = '', string $orderDirection = 'ASC'): 
     
     return sortByColumn($db['tags'], $orderColumn, $orderDirection);
 }
+
+/**
+ * @param int $id
+ *
+ * @return array
+ * @throws Exception
+ */
+function findOneTag(int $id): array
+{
+    $tags = findAllTags();
+    
+    foreach ($tags as $tag) {
+        if (!array_key_exists('id', $tag)) {
+            continue;
+        }
+        
+        if ($tag['id'] === $id) {
+            return $tag;
+        }
+    }
+    
+    throw new Exception('Didn\'nt find any tag with Id ' . $id);
+}

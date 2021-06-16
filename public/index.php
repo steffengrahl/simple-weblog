@@ -40,38 +40,40 @@ unset($_GET['sort-order']);
         echo '</ul>';
         echo '</nav>';
     }
-
+    
     $tags = findAllTags();
-
+    
     if (!empty($categories)) {
         echo '<nav id="tags">';
         echo '<h3>Tags</h3>';
         echo '<ul>';
-    
+        
         foreach ($tags as $tag) {
             echo '<li><a href="index.php?tag=' . $tag['id'] . '">' . $tag['name'] . '</a></li>';
         }
-    
+        
         echo '</ul>';
         echo '</nav>';
     }
     ?>
 </aside>
 <main>
-    <?php if (empty($_GET)) : ?>
-    <aside>
-        <p>
-            <span class="label">Sort:</span>
-            <?php
-            if ($sortOrder === 'DESC') {
-                echo '<a href="index.php?sort-order=asc">ascending</a>';
-            } else {
-                echo '<a href="index.php?sort-order=desc">descending</a>';
-            }
-            ?>
-        </p>
-    </aside>
-    <?php endif; ?>
+    <?php
+    if (empty($_GET)) : ?>
+        <aside>
+            <p>
+                <span class="label">Sort:</span>
+                <?php
+                if ($sortOrder === 'DESC') {
+                    echo '<a href="index.php?sort-order=asc">ascending</a>';
+                } else {
+                    echo '<a href="index.php?sort-order=desc">descending</a>';
+                }
+                ?>
+            </p>
+        </aside>
+    <?php
+    endif; ?>
     <?php
     
     if (empty($_GET)) {
@@ -95,7 +97,7 @@ unset($_GET['sort-order']);
         $postId = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
         
         try {
-            $post            = findOnePost($postId);
+            $post            = findOneCategory($postId);
             $postPublishDate = strftime('%a %e. %B %Y', (new DateTime($post['created_at']))->getTimestamp());
             
             echo '<article>';
@@ -112,31 +114,39 @@ unset($_GET['sort-order']);
         $categoryId = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
         
         try {
-            $posts = findPostsByCategorie($categoryId, 'created_at', $sortOrder);
-    
+            $posts    = findPostsByCategorie($categoryId, 'created_at', $sortOrder);
+            $category = findOneCategory($categoryId);
+            
+            echo '<section>';
+            echo '<header><h2>Posts in category ' . $category['name'] . '</h2></header>';
             echo '<ul>';
             foreach ($posts as $post) {
                 $postPublishDate = strftime('%a %e. %B %Y', (new DateTime($post['created_at']))->getTimestamp());
                 echo '<li>[' . $postPublishDate . '] <a href="?post=' . $post['id'] . '">' . $post['title'] . '</a></li>';
             }
             echo '</ul>';
+            echo '</section>';
         } catch (Exception $exception) {
             echo 'Keine Beiträge gefunden. <a href="?action=new">Schreib</a> den ersten Beitrag.';
         }
     }
-
+    
     if ($_GET['tag']) {
         $tagId = filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_NUMBER_INT);
-    
+        
         try {
             $posts = findPostsByTag($tagId, 'created_at', $sortOrder);
-        
+            $tag   = findOneTag($tagId);
+            
+            echo '<section>';
+            echo '<header><h2>Posts with tag ' . $tag['name'] . '</h2></header>';
             echo '<ul>';
             foreach ($posts as $post) {
                 $postPublishDate = strftime('%a %e. %B %Y', (new DateTime($post['created_at']))->getTimestamp());
                 echo '<li>[' . $postPublishDate . '] <a href="?post=' . $post['id'] . '">' . $post['title'] . '</a></li>';
             }
             echo '</ul>';
+            echo '</section>';
         } catch (Exception $exception) {
             echo 'Keine Beiträge gefunden. <a href="?action=new">Schreib</a> den ersten Beitrag.';
         }
